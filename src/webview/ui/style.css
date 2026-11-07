@@ -1,0 +1,692 @@
+
+/* =================================
+   PET INTERACTION SYSTEM
+================================= */
+
+.pet-character {
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    background: transparent;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.pet-character:hover {
+    transform: scale(1.08);
+}
+
+.pet-character:active {
+    transform: scale(0.94);
+}
+
+.pet-character:focus-visible {
+    outline: 2px solid var(--vscode-focusBorder);
+    outline-offset: 5px;
+    border-radius: 12px;
+}
+
+/* Mood: Happy */
+
+.pet-character[data-mood="happy"] .pet-face {
+    background: #8b9cff;
+}
+
+/* Mood: Neutral */
+
+.pet-character[data-mood="neutral"] .mouth {
+    width: 12px;
+    height: 2px;
+    border: none;
+    border-radius: 2px;
+    background: #20243c;
+}
+
+/* Mood: Tired */
+
+.pet-character[data-mood="tired"] .eyes span {
+    height: 3px;
+    border-radius: 5px;
+}
+
+/* Mood: Sleeping */
+
+.pet-character[data-mood="sleeping"] .eyes span {
+    height: 2px;
+    border-radius: 5px;
+}
+
+.pet-character[data-mood="sleeping"] .mouth {
+    width: 8px;
+    height: 8px;
+    border: 2px solid #20243c;
+    border-radius: 50%;
+}
+
+.interaction-hint {
+    font-size: 10px;
+    opacity: 0.55;
+    margin-top: 14px;
+}
+
+.stat-card small {
+    display: block;
+    margin-top: 7px;
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+.energy-bar,
+.exp-bar {
+    transition: width 0.3s ease;
+}
+
+/* Fix Pet Click Interaction */
+
+.pet-character {
+    position: relative;
+    z-index: 10;
+
+    display: block;
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    touch-action: manipulation;
+
+    transition: transform 0.2s ease;
+}
+
+.pet-character * {
+    pointer-events: none;
+}
+
+.pet-character:hover {
+    transform: scale(1.08);
+}
+
+.pet-character:active {
+    transform: scale(0.90);
+}
+
+.pet-character:focus-visible {
+    outline: 2px solid var(--vscode-focusBorder);
+    outline-offset: 5px;
+}
+
+/* =================================
+   CODEPET CHARACTER APPEARANCE
+================================= */
+
+.pet-character {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
+
+    display: grid;
+    place-items: center;
+
+    overflow: visible;
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    animation: pet-idle 3s ease-in-out infinite;
+}
+
+/* Ears */
+
+.pet-ears {
+    position: absolute;
+    top: 7px;
+    left: 0;
+
+    width: 100%;
+    height: 50px;
+    z-index: 0;
+}
+
+.ear {
+    position: absolute;
+
+    width: 30px;
+    height: 43px;
+
+    background: #8b9cff;
+    border: 3px solid #596fce;
+
+    border-radius: 18px 18px 10px 10px;
+}
+
+.ear.left {
+    left: 20px;
+    transform: rotate(-25deg);
+}
+
+.ear.right {
+    right: 20px;
+    transform: rotate(25deg);
+}
+
+/* Face */
+
+.pet-face {
+    position: relative;
+    z-index: 1;
+
+    width: 88px;
+    height: 80px;
+
+    background: #8b9cff;
+    border: 3px solid #596fce;
+
+    border-radius: 43% 43% 45% 45%;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Eyes */
+
+.eyes {
+    position: absolute;
+    top: 27px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: center;
+    gap: 27px;
+}
+
+.eyes span {
+    width: 8px;
+    height: 10px;
+
+    background: #20243c;
+    border-radius: 50%;
+}
+
+/* Mouth */
+
+.mouth {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+
+    width: 12px;
+    height: 7px;
+
+    border-bottom: 2px solid #20243c;
+    border-radius: 50%;
+
+    transform: translateX(-50%);
+}
+
+/* Idle Animation */
+
+@keyframes pet-idle {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Click Animation */
+
+.pet-character:active {
+    transform: scale(0.90);
+    animation: none;
+}
+
+/* Mood Colors */
+
+.pet-character[data-mood="happy"] .pet-face,
+.pet-character[data-mood="happy"] .ear {
+    background: #8b9cff;
+}
+
+.pet-character[data-mood="neutral"] .pet-face,
+.pet-character[data-mood="neutral"] .ear {
+    background: #a5a5b5;
+}
+
+.pet-character[data-mood="tired"] .pet-face,
+.pet-character[data-mood="tired"] .ear {
+    background: #91a6c9;
+}
+
+.pet-character[data-mood="sleeping"] .pet-face,
+.pet-character[data-mood="sleeping"] .ear {
+    background: #7888bc;
+}
+
+/* ==========================================
+   CODEPET ANIMATION SYSTEM
+========================================== */
+
+/* 1. Idle animation */
+
+.pet-character {
+    transform-origin: center bottom;
+    animation: pet-idle 3s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes pet-idle {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* 2. Blinking animation */
+
+.eyes span {
+    transform-origin: center;
+    transition: transform 0.12s ease;
+}
+
+.pet-character.is-blinking .eyes span {
+    transform: scaleY(0.12);
+}
+
+/* 3. Click reaction */
+
+.pet-character.is-clicked {
+    animation: pet-bounce 0.45s ease;
+}
+
+@keyframes pet-bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(0.85) translateY(4px);
+    }
+
+    60% {
+        transform: scale(1.12) translateY(-12px);
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* 4. Happy mood */
+
+.pet-character[data-mood="happy"] {
+    animation-duration: 3s;
+}
+
+.pet-character[data-mood="happy"] .pet-face {
+    filter: brightness(1.05);
+}
+
+/* 5. Neutral mood */
+
+.pet-character[data-mood="neutral"] {
+    animation-duration: 4s;
+}
+
+/* 6. Tired mood */
+
+.pet-character[data-mood="tired"] {
+    animation-duration: 5s;
+}
+
+.pet-character[data-mood="tired"] .pet-face {
+    filter: brightness(0.92);
+}
+
+/* 7. Sleeping mood */
+
+.pet-character[data-mood="sleeping"] {
+    animation-duration: 6s;
+}
+
+.pet-character[data-mood="sleeping"]::after {
+    content: "Z z";
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    color: var(--vscode-descriptionForeground);
+    font-size: 15px;
+    font-weight: bold;
+
+    animation: sleeping-text 2s ease-in-out infinite;
+}
+
+.pet-character[data-mood="sleeping"] .eyes span {
+    height: 2px;
+    transform: scaleY(0.2);
+}
+
+@keyframes sleeping-text {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+}
+
+/* 8. Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    .pet-character,
+    .pet-character::after {
+        animation: none !important;
+    }
+}
+
+/* =================================
+   PET ACTION CONTROLS
+================================= */
+
+.pet-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.action-button {
+    flex: 1;
+    max-width: 110px;
+    min-height: 55px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 10px;
+
+    background: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+
+    cursor: pointer;
+    font-size: 11px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.action-button span:first-child {
+    font-size: 20px;
+}
+
+.action-button:hover {
+    background: var(--vscode-button-secondaryHoverBackground);
+    transform: translateY(-3px);
+}
+
+.action-button:active {
+    transform: scale(0.95);
+}
+
+.action-button:focus-visible {
+    outline: 2px solid var(--vscode-focusBorder);
+    outline-offset: 3px;
+}
+
+.feed-button:hover {
+    border-color: #4ade80;
+}
+
+.sleep-button:hover {
+    border-color: #60a5fa;
+}
+
+.play-button:hover {
+    border-color: #c084fc;
+}
+
+/* =================================
+   HAPPINESS SYSTEM
+================================= */
+
+.happiness-bar {
+    width: 100%;
+    height: 100%;
+    background: #f472b6;
+    transition: width 0.3s ease;
+}
+
+/* Status indicators */
+
+.stat-card {
+    min-width: 0;
+}
+
+.energy-bar,
+.happiness-bar,
+.exp-bar {
+    transition: width 0.3s ease;
+}
+
+/* ==========================================
+   CODEPET MAIN LAYOUT
+========================================== */
+
+.container {
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    font-size: 26px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.header p {
+    margin: 3px 0 0;
+    font-size: 11px;
+    opacity: 0.65;
+}
+
+/* ==========================================
+   PET SECTION
+========================================== */
+
+.pet-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 230px;
+    padding: 10px 0;
+}
+
+.mood-text {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+}
+
+#petName {
+    margin: 8px 0 4px;
+    font-size: 15px;
+}
+
+#petMessage {
+    font-size: 12px;
+    opacity: 0.8;
+    margin: 4px 0;
+    overflow-wrap: anywhere;
+}
+
+.interaction-hint {
+    font-size: 10px;
+    opacity: 0.55;
+    margin-top: 8px;
+}
+
+/* ==========================================
+   PET CHARACTER VISIBILITY
+========================================== */
+
+.pet-character {
+    position: relative;
+    display: grid !important;
+    place-items: center;
+
+    width: 120px;
+    height: 120px;
+
+    margin: 15px auto;
+
+    padding: 0;
+    border: none;
+    outline: none;
+
+    overflow: visible;
+    background: transparent;
+
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.pet-ears,
+.pet-face,
+.ear,
+.eyes,
+.eyes span,
+.mouth {
+    visibility: visible;
+    opacity: 1;
+}
+
+.pet-ears {
+    display: block;
+}
+
+.pet-face {
+    display: block;
+}
+
+.eyes {
+    display: flex;
+}
+
+/* ==========================================
+   STATISTICS
+========================================== */
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.stat-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+
+    padding: 12px;
+
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 8px;
+
+    background: var(--vscode-editor-background);
+}
+
+.stat-card strong {
+    text-align: right;
+}
+
+.progress {
+    grid-column: 1 / -1;
+
+    width: 100%;
+    height: 7px;
+
+    overflow: hidden;
+    border-radius: 10px;
+
+    background: var(--vscode-progressBar-background);
+}
+
+.energy-bar,
+.happiness-bar,
+.exp-bar {
+    display: block;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.energy-bar {
+    background: #facc15;
+}
+
+.happiness-bar {
+    background: #f472b6;
+}
+
+.exp-bar {
+    background: #60a5fa;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    margin-top: 20px;
+    padding-top: 10px;
+
+    text-align: center;
+    font-size: 10px;
+    opacity: 0.55;
+
+    border-top: 1px solid var(--vscode-panel-border);
+}

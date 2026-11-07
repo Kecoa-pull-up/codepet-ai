@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'none'; style-src {{CSP_SOURCE}}; script-src {{CSP_SOURCE}};"
+    >
+
+    <title>CodePet AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{STYLE_URI}}"
+    >
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-content">
+                <span class="logo">🐾</span>
+
+                <div>
+                    <h2>CodePet AI</h2>
+                    <p>Virtual Coding Companion</p>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- PET SECTION -->
+        <section class="pet-section">
+
+            <p id="moodText" class="mood-text">
+                Happy
+            </p>
+
+            <!-- PET CHARACTER -->
+            <button
+                class="pet-character"
+                id="petCharacter"
+                type="button"
+                aria-label="Interact with CodePet"
+                data-mood="happy"
+            >
+
+                <!-- EARS -->
+                <div class="pet-ears">
+                    <div class="ear left"></div>
+                    <div class="ear right"></div>
+                </div>
+
+                <!-- FACE -->
+                <div class="pet-face">
+
+                    <!-- EYES -->
+                    <div class="eyes">
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <!-- MOUTH -->
+                    <div class="mouth"></div>
+
+                </div>
+
+            </button>
+
+            <!-- PET INFORMATION -->
+            <h3 id="petName">CodePet</h3>
+
+            <p id="petMessage">
+                Hello! Ready to code today?
+            </p>
+
+            <p class="interaction-hint">
+                Click your pet to interact!
+            </p>
+
+        </section>
+
+
+        <!-- PET ACTIONS -->
+        <section class="pet-actions">
+
+            <button
+                class="action-button feed-button"
+                id="feedButton"
+                type="button"
+            >
+                <span>🍎</span>
+                <span>Feed</span>
+            </button>
+
+            <button
+                class="action-button sleep-button"
+                id="sleepButton"
+                type="button"
+            >
+                <span>💤</span>
+                <span>Sleep</span>
+            </button>
+
+            <button
+                class="action-button play-button"
+                id="playButton"
+                type="button"
+            >
+                <span>🎮</span>
+                <span>Play</span>
+            </button>
+
+        </section>
+
+
+        <!-- PET STATISTICS -->
+        <section class="stats">
+
+            <!-- ENERGY -->
+            <div class="stat-card">
+
+                <span>⚡ Energy</span>
+
+                <strong id="energyValue">100%</strong>
+
+                <div class="progress">
+                    <div
+                        class="energy-bar"
+                        id="energyBar"
+                        style="width: 100%;"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <!-- HAPPINESS -->
+            <div class="stat-card">
+
+                <span>❤️ Happiness</span>
+
+                <strong id="happinessValue">100%</strong>
+
+                <div class="progress">
+                    <div
+                        class="happiness-bar"
+                        id="happinessBar"
+                        style="width: 100%;"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <!-- LEVEL AND EXP -->
+            <div class="stat-card">
+
+                <span>⭐ Level</span>
+
+                <strong id="levelValue">1</strong>
+
+                <div class="progress">
+                    <div
+                        class="exp-bar"
+                        id="expBar"
+                        style="width: 0%;"
+                    ></div>
+                </div>
+
+                <small id="expValue">0 / 100 EXP</small>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>CodePet AI • Your Coding Companion</p>
+        </footer>
+
+    </main>
+
+    <script
+        src="{{SCRIPT_URI}}"
+        defer
+    ></script>
+
+</body>
+</html>
